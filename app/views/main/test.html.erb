@@ -1,0 +1,20 @@
+<h1>Main#test</h1>
+
+<%= form_with url: "/main/result", method: "post" , data: {turbo:false} do |form| %>
+    <% idx = 0 %>
+    <% for i in 0...@num do %>
+        <%= form.hidden_field :n, value: @num %>
+        <label for="name">Subject: </label>
+        <input name="subject[name][]" type="text" value="<% if !@subname.blank? %><%= @subname[i] %><% end %>"/>
+        <label for="name">Score: </label>
+        <input name="subject[score][]" type="text" value="<% if !@subscore.blank? %><%= @subscore[i] %><% end %>"/>
+        <% if !@is_blank.blank? && @is_blank[idx].to_i == i %>
+            <small>Please fill in the blank</small>
+            <% idx += 1 %>
+        <% end %>
+        <br>  
+    <%end%>
+
+    <%= form.submit "Submit" %>
+    <%= link_to "see all", controller: "score" , action: "list" , n:@num %>
+<% end %>

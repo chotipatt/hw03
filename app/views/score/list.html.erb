@@ -1,0 +1,20 @@
+<h1>Score#list</h1>
+<% @is_delete = false %>
+
+
+<%for s in @subjectlist %>
+    <label>Subject: </label>
+    <%= s.name %>
+    <label>Score: </label>
+    <%= s.score%>
+    <%= link_to "edit", controller: "score" , action: "edit" , name:s.name , score:s.score , n:@n%>
+    <%= link_to "delete", controller: "score" , action: "list" , name:s.name , score:s.score, id:s.id, n:@n ,delete:!@is_delete%>
+    <br>
+<%end%>
+
+<br>
+<%= "Subject Max Score: " + @maxsubject %>
+<br>
+<%= "Total Score: " + @totalscore.to_s %>
+<br>
+<%= link_to "Back", controller: "main" , action: "test" , amount:@n %>

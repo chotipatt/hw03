@@ -1,0 +1,20 @@
+<h1>Edit</h1>
+
+<label>Subject:</label>
+<%= @name %>
+<br>
+<label>Score:</label>
+<%= @score %>
+
+<%= form_with url: "/score/new", method: "post" , data: {turbo:false} do |form| %>
+    <%= form.hidden_field :id, value: @id %>
+    <%= form.hidden_field :n, value: @n %>
+    <h3>Edit to</h3>
+    <label>Subject: </label>
+    <input name="editname" type="text" value=""/>
+    <label>Score: </label>
+    <input name="editscore" type="text" value=""/>
+    <%= form.submit "Submit nakrubbbb" %>
+    <%= link_to "Back", controller: "score" , action: "list" , n:@n %> 
+<%end%>
+
